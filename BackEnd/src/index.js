@@ -5,6 +5,9 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
+const PORT = 3000;
+const HOST = '0.0.0.0';
+
 const app = express();
 
 mongoose.connect(
@@ -19,4 +22,4 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 app.use(require("./routes"));
-app.listen(3000);
+app.listen(PORT, HOST);
