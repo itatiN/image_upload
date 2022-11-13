@@ -3,21 +3,30 @@ const path = require("path");
 const crypto = require("crypto");
 
 module.exports = {
-    dest: path.resolve(__dirname, "..", "..", "tpm", "uploads"),
+    dest: path.resolve(__dirname, "..", "..", "tmp", "uploads"),
     storage: multer.diskStorage({
-
+        destination: (req, res, cb) => {
+            cb(null, path.resolve(__dirname, "..", "..", "tmp", "uploads"));
+        },
+        // filename: (req, res, cb) => {
+        //     crypto.randomBytes(16, (err, hash) =>{
+        //         if (err) cb(err);
+        //         const fileName = `${hash.toString('hex')}-${file.originalname}`;
+        //         cb(null,fileName);
+        //     });
+        // },
     }),
     limits: {
-        filesize: 2 * 1024 * 1024,
+        fileSize: 2 * 1024 * 1024,
     },
-    filefilter: (req, file, cb) => {
+    fileFilter: (req, file, cb) => {
         const allowedMimes = [
-            "images/jpeg",
-            "images/pgjep",
-            "images/png",
-            "images/gif"
+            "image/jpeg",
+            "image/pgjep",
+            "image/png",
+            "image/gif"
         ];
-        if(allowedMimes.includes(file.mimetypes)){
+        if(allowedMimes.includes(file.mimetype)){
             cb(null, true);
         }else{
             cb(new Error("Invalid file type."));
