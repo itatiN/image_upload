@@ -10,11 +10,14 @@
   "author": "Itatiano",
   "dependencies": {
     "-": "^0.0.1",
+    "aws-sdk": "^2.1253.0",
     "D": "^1.0.0",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.7.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "multer-s3": "^2.10.0",
     "nodemon": "^2.0.20"
   }
 }
